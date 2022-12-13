@@ -58,7 +58,7 @@ def get_api_answer(timestamp):
     """Запрос к эндпоинту API-сервиса."""
     try:
         response = requests.get(
-            ENDPOINT, headers=HEADERS, params={'from_date': 0}
+            ENDPOINT, headers=HEADERS, params={'from_date': timestamp}
         )
 
     except Exception as error:
@@ -76,7 +76,7 @@ def get_api_answer(timestamp):
 
 
 def check_response(response):
-    """ Ответ API на соответствие документации."""
+    """Ответ API на соответствие документации."""
     try:
         homeworks = response['homeworks']
     except KeyError:
