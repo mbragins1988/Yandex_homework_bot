@@ -60,7 +60,7 @@ def get_api_answer(timestamp):
     try:
         logging.debug("Началася запрос к API")
         response = requests.get(
-            ENDPOINT, headers=HEADERS, params={"from_date": 1549962000}
+            ENDPOINT, headers=HEADERS, params={"from_date": timestamp}
         )
 
     except Exception as error:
@@ -76,9 +76,10 @@ def get_api_answer(timestamp):
 
 def check_response(response):
     """Ответ API на соответствие документации."""
-    homeworks = response.get("homeworks")
     if not isinstance(response, dict):
         raise TypeError("Тип 'response' не словарь")
+
+    homeworks = response.get("homeworks")
 
     if "homeworks" not in response:
         raise KeyError("Ключа 'homeworks' нет в словаре response")
@@ -105,7 +106,7 @@ def parse_status(homeworks):
             "словаре response 'HOMEWORK_VERDICTS'"
         )
     verdict = HOMEWORK_VERDICTS[homework_status]
-    return f"Изменился статус проверки работы '{homework_name}'. {verdict}"
+    return f'Изменился статус проверки работы "{homework_name}". {verdict}'
 
 
 def main():
