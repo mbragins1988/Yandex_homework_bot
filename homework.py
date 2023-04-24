@@ -60,7 +60,7 @@ def get_api_answer(timestamp):
     try:
         logging.debug("Началася запрос к API")
         response = requests.get(
-            ENDPOINT, headers=HEADERS, params={"from_date": timestamp}
+            ENDPOINT, headers=HEADERS, params={"from_date": 0}
         )
 
     except Exception as error:
